@@ -45,5 +45,4 @@ class Player(GameEntity):
         self.state_machine.on_input(input_id, input_data)
 
     def collides(self, another: Any) -> bool:
-        # Ensure collision detection uses the correct rectangles
         return self.get_collision_rect().colliderect(another.get_collision_rect())

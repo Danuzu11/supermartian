@@ -99,10 +99,8 @@ class PlayState(BaseState):
         
         if not self.special_box and self.player.score >= 1:
             self.special_box = True
-            box_x = settings.VIRTUAL_WIDTH // 2 - 8  
-            box_y = settings.VIRTUAL_HEIGHT // 2 - 16       
-            box_width = 16
-            box_height = 16
+            box_x = settings.VIRTUAL_WIDTH // 2 - 30 * 2 
+            box_y = settings.VIRTUAL_HEIGHT // 2 - 30 * 2      
             box = SpecialBox(box_x, box_y,self.game_level)
             self.game_level.add_item(box)
 

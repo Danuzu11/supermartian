@@ -11,9 +11,9 @@ class SpecialBox(GameItem):
         super().__init__(
             collidable=True,
             consumable=False,
-            x=x,
-            y=y,
-            width=settings.SPECIAL_BOX_WIDTH,
+            x= x,
+            y= y,
+            width=settings.SPECIAL_BOX_WIDTH + 13,
             height=settings.SPECIAL_BOX_HEIGHT,
             texture_id="boxLevel",
             frame_index=0,
@@ -49,23 +49,21 @@ class SpecialBox(GameItem):
 
         # Si el jugador golpea la caja y esta esta activa y se encuentra quieta se generara una animacion de salto
         # y ademas de esto se creara una llave que sera la que nos lleve al nuevo nivel
-        if self.state == "Idle" and player_rect.top <= self.y and self.texture != self.texture_grey:
+        if self.state == "Idle" and player_rect.top <= box_rect.bottom and self.texture != self.texture_grey:
             self.state = "Jumping"
             self.vy = self.jump_velocity
             self.texture = self.texture_grey
 
             key_x_position = self.x + self.width // 2 - 18
-            key_y_position = self.y - self.height // 2 - 16
+            key_y_position = self.y - self.height // 2 - 20
             
             # Creamos la llave para que se cree en el nivel y se pueda recoger
             new_key = RotatingKey(
                 x=key_x_position,
                 y=key_y_position,
-                width=16,
-                height=16,
                 game_level=self.game_level,
             )
-            new_key.state = "Jumping"
+            
             # Luego de definir todos sus parametros la agregamos a la lista de items del mundo
             self.game_level.add_item(new_key)
 
@@ -85,9 +83,18 @@ class SpecialBox(GameItem):
             # Sino el sprite sera el de estar parado   
             else:
                 player.change_state("idle")
+                
+         # Verificamos si el jugador golpea la parte inferior de la caja
+        if player.vy < 0 and player_rect.top <= box_rect.bottom and player_rect.bottom > box_rect.bottom:
+            player.y = box_rect.bottom
+            player.vy = settings.GRAVITY / 5
 
     def render(self, surface: pygame.Surface) -> None:
         surface.blit(self.texture, (self.x, self.y))
+        
+        # renderizar la caja de colision para debugin
+        #pygame.draw.rect(surface, (255, 0, 0), self.get_collision_rect(), 1)
+        #pygame.draw.rect(surface, (0, 255, 0), self.get_collision_rect(), 1)
 
 
 

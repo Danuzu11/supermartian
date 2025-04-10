@@ -49,7 +49,4 @@ class GameItem(GameObject):
         return self._on_consume(self, consumer)
 
     def update(self, dt: float) -> None:
-        """
-        Update the item. This method can be overridden by subclasses.
-        """
         pass

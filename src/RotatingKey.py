@@ -7,7 +7,7 @@ import math
 
 class RotatingKey(GameItem):
 
-    def __init__(self, x: int, y: int, width: int, height: int, game_level) -> None:
+    def __init__(self, x: int, y: int, game_level) -> None:
         super().__init__(
             collidable=True,
             consumable=True,
