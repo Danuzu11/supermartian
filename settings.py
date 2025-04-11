@@ -44,8 +44,8 @@ GRAVITY = 980
 
 NUM_LEVELS = 1
 
-SPECIAL_BOX_WIDTH = 16
-SPECIAL_BOX_HEIGHT = 16
+SPECIAL_BOX_WIDTH = 43
+SPECIAL_BOX_HEIGHT = 20
 
 KEY_WIDTH = 50
 KEY_HEIGHT = 25
@@ -58,8 +58,8 @@ TEXTURES = {
     "tiles": pygame.image.load(BASE_DIR / "assets" / "textures" / "tileset.png"),
     "martian": pygame.image.load(BASE_DIR / "assets" / "textures" / "martian.png"),
     "creatures": pygame.image.load(BASE_DIR / "assets" / "textures" / "creatures.png"),
-    "boxLevel": pygame.transform.scale(pygame.image.load(BASE_DIR / "assets" / "textures" / "boxNewLevel.png"), (28, 16)),
-    "boxLevelGrey": pygame.transform.scale(pygame.image.load(BASE_DIR / "assets" / "textures" / "boxNewLevelGrey.png"), (28, 16)),
+    "boxLevel": pygame.transform.scale(pygame.image.load(BASE_DIR / "assets" / "textures" / "boxNewLevel.png"), (SPECIAL_BOX_WIDTH, SPECIAL_BOX_HEIGHT)),
+    "boxLevelGrey": pygame.transform.scale(pygame.image.load(BASE_DIR / "assets" / "textures" / "boxNewLevelGrey.png"), (SPECIAL_BOX_WIDTH, SPECIAL_BOX_HEIGHT)),
     "key": pygame.transform.scale(pygame.image.load(BASE_DIR / "assets" / "textures" / "key.png"), (KEY_WIDTH, KEY_HEIGHT)),
     # "boxLevel": pygame.image.load(BASE_DIR / "assets" / "textures" / "boxNewLevel.png"),
     # "boxLevelGrey": pygame.image.load(BASE_DIR / "assets" / "textures" / "boxNewLevelGrey.png"),
@@ -70,8 +70,8 @@ FRAMES = {
     "tiles": frames.generate_frames(TEXTURES["tiles"], 16, 16),
     "martian": frames.generate_frames(TEXTURES["martian"], 16, 20),
     "creatures": frames.generate_frames(TEXTURES["creatures"], 16, 16),
-    "boxLevel": frames.generate_frames(TEXTURES["boxLevel"], 24, 16),
-    "boxLevelGrey": frames.generate_frames(TEXTURES["boxLevelGrey"], 24, 16),
+    "boxLevel": frames.generate_frames(TEXTURES["boxLevel"], SPECIAL_BOX_WIDTH, SPECIAL_BOX_HEIGHT),
+    "boxLevelGrey": frames.generate_frames(TEXTURES["boxLevelGrey"], SPECIAL_BOX_WIDTH, SPECIAL_BOX_HEIGHT),
     "key": frames.generate_frames(TEXTURES["key"], KEY_WIDTH, KEY_HEIGHT),
 }
 
@@ -88,6 +88,8 @@ SOUNDS = {
     "jump": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "jump.wav"),
     "timer": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "timer.wav"),
     "count": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "count.wav"),
+    "win": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "win.wav"),
+    "hitEspecialBox": pygame.mixer.Sound(BASE_DIR / "assets" / "sounds" / "hitEspecialBox.wav"),
 }
 
 SOUNDS["pickup_coin"].set_volume(0.5)

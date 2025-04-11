@@ -40,6 +40,7 @@ class Player(GameEntity):
         )
         self.score = 0
         self.coins_counter = {54: 0, 55: 0, 61: 0, 62: 0}
+        self.winner = False
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         self.state_machine.on_input(input_id, input_data)

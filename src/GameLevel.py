@@ -12,11 +12,14 @@ from typing import Any, Dict
 
 import pygame
 
+
 import settings
 from src.Creature import Creature
 from src.GameItem import GameItem
 from src.definitions import creatures, items
-from src import SpecialBox, RotatingKey
+
+from src.especialItems.SpecialBox import SpecialBox
+from src.especialItems.RotatingKey import RotatingKey
 
 class GameLevel:
     def __init__(self, num_level: int) -> None:
@@ -24,18 +27,24 @@ class GameLevel:
         self.creatures = []
         self.items = []
         settings.LevelLoader().load(self, settings.TILEMAPS[num_level])
-
+        
+        # Variable para controlar si el nivel ya se gano o no
+        self.winner_level = False
+        
+        # Variable extra para controlar la transicion entre nivel y tener como un "activador" del mismo
+        # de manera que la transicion se ejecute una sola ves al ganar y no se repita a cada rato
+        self.transitionin = False
+        
     def add_item(self, item_data: Any) -> None:
-        """
-        Add an item to the game level. The item can be either a GameItem instance
-        or a dictionary with item data.
-        """
+
+        # Verificamos que el item sea una instancia de GameItem y si es asi lo agregamos a la lista
         if isinstance(item_data, GameItem):
-            # If it's already a GameItem instance, add it directly
             self.items.append(item_data)
         else:
-            # Otherwise, assume it's a dictionary and process it as before
+            # Extraermos el nombre del item de la lista de items
             item_name = item_data.pop("item_name")
+
+            # Verificamos que son los items especiales que creamos y los agregamos a la lista de manera manueal
             if item_name == "special_box":
                 self.items.append(
                     SpecialBox(
@@ -49,11 +58,10 @@ class GameLevel:
                     RotatingKey(
                         x=item_data["x"],
                         y=item_data["y"],
-                        width=item_data["width"],
-                        height=item_data["height"],
                         game_level=self,
                     )
                 )
+            # De lo contrario los asumimos por defecto como estaban creados anteriormente
             else:
                 definition = items.ITEMS[item_name][item_data["frame_index"]]
                 definition.update(item_data)
@@ -85,8 +93,6 @@ class GameLevel:
         for item in self.items:
             item.update(dt)  
 
-
-        # Remove dead creatures
         self.creatures = [
             creature for creature in self.creatures if not creature.is_dead
         ]

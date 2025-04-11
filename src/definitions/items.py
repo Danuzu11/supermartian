@@ -76,13 +76,5 @@ ITEMS: Dict[str, Dict[int, Dict[str, Any]]] = {
             "on_consume": pickup_yellow_coin,
         },
     },
-    "special_box": {
-        0: {
-            "texture_id": "boxLevel",
-            "solidness": dict(top=True, right=False, bottom=False, left=False),
-            "collidable": True,
-            "consumable": False,
-            "on_collide": lambda box, player: box.on_collide(player),
-        }
-    },
+
 }

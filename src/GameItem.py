@@ -11,7 +11,7 @@ This file contains the class GameItem.
 from typing import Callable, TypeVar, Any, Optional
 
 from src.GameObject import GameObject
-
+from src.Player import Player
 
 class GameItem(GameObject):
     def __init__(
@@ -43,6 +43,10 @@ class GameItem(GameObject):
         return self._on_collide(self, another)
 
     def on_consume(self, consumer: Any) -> Any:
+        
+        if isinstance(consumer, Player) and consumer.winner:
+            return None
+        
         if not self.consumable or self._on_consume is None:
             return None
         self.active = False
