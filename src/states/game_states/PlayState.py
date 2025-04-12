@@ -89,6 +89,9 @@ class PlayState(BaseState):
         print("comienza transicion")
              
     def __switch_transition(self):
+        if self.transition_direction == 1:
+            self.next_level()  
+
         self.transition_direction = -1
         print("cambia transicion")
 
@@ -98,8 +101,6 @@ class PlayState(BaseState):
         self.transition_alpha = 0
         print("FIN transicion")
         
-        # EDUARDO / VERO aqui deberian hacer la logica para pasar de el metodo de cambio de nivel
-        print("cambio de nivel")
         
     def __verify_transition(self,dt:float):
         # Variable para controlar el inicio de transicion del nivel
@@ -219,4 +220,7 @@ class PlayState(BaseState):
     
     
     def next_level(self):
+        self.winner = False
+        self.game_level.winner_level = False
+        self.state_machine.change("play", level=2)
         print("CREANDO SIGUIENTE NIVEL....")

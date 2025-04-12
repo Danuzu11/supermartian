@@ -80,10 +80,7 @@ class RotatingKey(GameItem):
         self.game_level.winner_level = True
         player.winner = True
         self.game_level.transitionin = True
-        
-        # Talves aqui pueda ir al logica de que gano el nivel y pasar el siguiente EDUARDO / VERO
-        # self.game_level.next_level()
-
+    
         # Despues de que el jugador gana el nivel se desactivara la llave
         self.active = False 
     
