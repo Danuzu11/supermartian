@@ -155,7 +155,7 @@ class PlayState(BaseState):
         
         # Si el jugador obtiene cierta cantidad de puntos genera caja especial
         # Siempre y cuando no haya ya una caja activa
-        if not self.special_box and self.player.score >= 1 and self.level != 2:
+        if not self.special_box and self.player.score >= 50 and self.level != 2:
             self.special_box = True
             box_x = settings.VIRTUAL_WIDTH // 2 - 30 * 2 
             box_y = settings.VIRTUAL_HEIGHT // 2 - 30 * 2 - 5   
