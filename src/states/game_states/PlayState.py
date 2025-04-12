@@ -56,7 +56,7 @@ class PlayState(BaseState):
        
         if self.clock is None:
             self.clock = Clock(30)
-
+        Timer.clear()
         def countdown_timer():
             self.clock.count_down()
 
