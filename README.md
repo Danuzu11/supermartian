@@ -29,9 +29,8 @@
 - Added logic to transition to the next level after collecting the `RotatingKey`.
 - Ensured that the game pauses and transitions smoothly when a level is completed.
 
-### Timer System
-- Integrated the `Timer` utility for managing animations and transitions.
-- Used `Timer.every` and `Timer.after` for countdowns and delayed actions.
+### Create new Level
+- Integrated new level for enjoy when you take the special key, after transition you going to stay in new level with new tricks.
 
 ## How to use new Mechanics
 
