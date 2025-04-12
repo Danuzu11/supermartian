@@ -40,6 +40,7 @@ class PlayState(BaseState):
 
         self.tilemap = self.game_level.tilemap
         self.player = enter_params.get("player")
+        
         if self.player is None:
             self.player = Player(0, settings.VIRTUAL_HEIGHT - 66, self.game_level)
             self.player.change_state("idle")
@@ -53,10 +54,10 @@ class PlayState(BaseState):
 
         self.clock = enter_params.get("clock")
  
-        if self.game_level.winner_level:
-            Timer.pause()
+        # if self.game_level.winner_level:
+        #     Timer.pause()
        
-        elif self.clock is None:
+        if self.clock is None:
             self.clock = Clock(30)
 
             def countdown_timer():
@@ -159,7 +160,7 @@ class PlayState(BaseState):
         
         # Si el jugador obtiene cierta cantidad de puntos genera caja especial
         # Siempre y cuando no haya ya una caja activa
-        if not self.special_box and self.player.score >= 1:
+        if not self.special_box and self.player.score >= 1 and self.level != 2:
             self.special_box = True
             box_x = settings.VIRTUAL_WIDTH // 2 - 30 * 2 
             box_y = settings.VIRTUAL_HEIGHT // 2 - 30 * 2 - 5   
