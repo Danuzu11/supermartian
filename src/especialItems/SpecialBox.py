@@ -131,9 +131,8 @@ class SpecialBox(GameItem):
     def render(self, surface: pygame.Surface) -> None:
         surface.blit(self.texture, (self.x, self.y))
         
-        # renderizar la caja de colision para debugin
-        #pygame.draw.rect(surface, (255, 0, 0), self.get_collision_rect(), 1)
-        pygame.draw.rect(surface, (0, 255, 0), self.get_collision_rect(), 1)
+       
+
 
 
 

@@ -105,6 +105,3 @@ class RotatingKey(GameItem):
                 # Renderizamos normal , para ver el movimiento en y de la llave (el salto)
                 surface.blit(self.texture, (self.x, self.y))
 
-            # Rectangulo de colision de la llave para debug    
-            pygame.draw.rect(surface, (255, 0, 0), self.get_collision_rect(), 1)
-
